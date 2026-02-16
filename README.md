@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>時を越えるフォトラリー</title>
+<title>時を越えるフォトラリー📷</title>
 
 <style>
 body{
@@ -157,9 +158,22 @@ gap:10px;
 margin-top:20px;
 }
 .photo-gallery img{
-width:50%;
-border-radius:10px;
+    width:100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius:50%;
+    border:3px solid #fff;
 }
+
+/* 昔風（レトロ）フォトエフェクト */
+.retro {
+    filter:
+        sepia(0.6)
+        contrast(1.1)
+        saturate(0.8)
+        brightness(0.95);
+}
+
 </style>
 </head>
 <body>
@@ -256,7 +270,7 @@ reader.onload=(event)=>{
 const slot=document.querySelector(`.photo-slot[data-index='${currentIndex}']`);
 if(!slot.querySelector("img")) completed++;
 
-slot.innerHTML=`<img src="${event.target.result}">`;
+slot.innerHTML=`<img src="${event.target.result}" class="retro">`;
 photos[currentIndex]=event.target.result;
 
 progress.innerText=`${completed} / 6`;
